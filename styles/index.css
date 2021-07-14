@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.buttons{
+    @apply flex flex-col justify-items-center place-items-center bg-red-100 p-5 border-4 border-black rounded-md hover:border-gray-500;
+}
+
+.buttonsImage{
+    @apply h-10 w-10  rounded self-center;
+}
