@@ -18,10 +18,12 @@ const FoodbankHome = () => {
               <h2 className='text-sm text-center text-gray-600 mt-4 '>Scan Collector</h2>
             </div>
           </Link>
-          {/* <a href='/' className='buttons'>
-            <img className='buttonsImage' src='/images/category.png' />
-            <h2 className='text-sm text-center text-gray-600 mt-4'>Choose Category</h2>
-          </a> */}
+          <Link href='/foodbank/manual'>
+            <div className='buttons'>
+              <img className='buttonsImage' src='/images/category.png' />
+              <h2 className='text-sm text-center text-gray-600 mt-4 '>Manual Entry</h2>
+            </div>
+          </Link>
         </div>
       </div>
     </Layout>
