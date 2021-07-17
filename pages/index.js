@@ -1,43 +1,54 @@
+import React, { useState } from 'react'
 import Head from 'next/head'
+import QRCode from 'react-qr-code'
 
-const Home = () => {
-  return (
-    <div className="px-8 mt-10">
-      <Head>
-        <title>The White Flag Project</title>
-      </Head>
+import Layout from '../components/layoutCollector'
 
-      <div className="mx-auto">
-        <img className="rounded-tr-md rounded-tl-md h-48 w-full" src="/images/pexels-alex.jpg" />
+function Home ({ data }) {
+  const [userDetails, setUserDetails] = useState(null)
+
+  const loginUser = async event => {
+    event.preventDefault()
+
+    // Do validation of ID or IC number here
+    if (event.target.idNumber.length === 0) return alert('Please enter an ID number')
+
+    // Validated
+    const userID = event.target.idNumber.value
+
+    const res = await fetch(
+      '/api/collectorLogin',
+      {
+        body: JSON.stringify({
+          userID
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'POST'
+      }
+    )
+
+    const result = await res.json()
+    console.log('RESULT', result)
+    setUserDetails(result)
+  }
+
+  return userDetails ? (
+    <Layout>
+      <h2>{userDetails.userID}</h2>
+      <QRCode value={userDetails._id} />
+    </Layout>
+  ) : (
+    <Layout>
+      <div className='bg-white p-8 rounded-br-md rounded-bl-md mt-10 flex flex-col items-strech'>
+        <form onSubmit={loginUser}>
+          <label htmlFor='idNumber'>ID Number</label>
+          <input id='idNumber' name='idNumber' type='text' autoComplete='name' required />
+          <button type='submit'>Login</button>
+        </form>
       </div>
-
-      <div className="bg-white p-8 rounded-br-md rounded-bl-md mt-10">
-        <h2 className="text-gray-700 font-semibold">Foodbanker Portal</h2>
-        <br/>
-
-
-        <div className="flex flex-col items-stretch  mt-8 ">
-
-          <a href="/scancollector" className="buttons">
-            <img className="buttonsImage" src="/images/qrcustomer.png"/>
-            <h2 className="text-sm text-center text-gray-600 mt-4 ">Scan Collector</h2>
-          </a>
-
-          <br/>
-
-          <a href="/" className="buttons">
-            <img className="buttonsImage" src="/images/category.png"/>
-            <h2 className="text-sm text-center text-gray-600 mt-4">Choose Category</h2>
-          </a>
-
-
-        </div>
-
-      </div>
-
-    </div>
+    </Layout>
   )
 }
-
-
 export default Home

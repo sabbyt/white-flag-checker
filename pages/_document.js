@@ -1,16 +1,18 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
-  }
+  // static async getInitialProps (ctx) {
+  //   const initialProps = await Document.getInitialProps(ctx)
+  //   return { ...initialProps }
+  // }
 
-  render() {
+  render () {
     return (
       <Html>
-        <Head />
-        <body className="bg-gray-200">
+        <Head>
+          <link rel='icon' href='/favicon.ico' />
+        </Head>
+        <body className='bg-gray-200'>
           <Main />
           <NextScript />
         </body>
@@ -18,5 +20,4 @@ class MyDocument extends Document {
     )
   }
 }
-
 export default MyDocument
