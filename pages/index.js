@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Head from 'next/head'
 import QRCode from 'react-qr-code'
 
 import Layout from '../components/layoutCollector'
