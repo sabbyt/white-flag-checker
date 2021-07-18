@@ -1,22 +1,20 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
-// import QrReader from 'react-qr-scanner'
 
 import Layout from '../../components/layoutFoodbank'
 
-const QrReader = dynamic(() => import('react-qr-scanner'), {
+const QrReader = dynamic(() => import('react-qr-reader'), {
   ssr: false
 })
 
 const ScanCollector = () => {
   const [qrString, setQRString] = useState('')
   const [hasScanned, setHasScanned] = useState(false)
-
-  const handleScan = (qrObj) => {
-    if (qrObj && qrObj.text) {
+  const handleScan = (qrString) => {
+    if (qrString && qrString.length > 0) {
       setHasScanned(true)
-      setQRString(qrObj.text)
+      setQRString(qrString)
     }
     console.log('QRSTRING', qrString)
   }
@@ -38,9 +36,14 @@ const ScanCollector = () => {
             {
               hasScanned
                 ? <p>{qrString}</p>
+                // : <QrReader
+                //     delay={100000}
+                //     onError={(err) => handleError(err)}
+                //     onScan={(obj) => handleScan(obj)}
+                //     style={{ width: '80%', margin: '0 auto' }}
+                //   />
                 : <QrReader
-                    facingMode='rear'
-                    delay={100000}
+                    facingMode='environment'
                     onError={(err) => handleError(err)}
                     onScan={(obj) => handleScan(obj)}
                     style={{ width: '80%', margin: '0 auto' }}
