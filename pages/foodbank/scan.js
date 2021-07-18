@@ -11,12 +11,12 @@ const QrReader = dynamic(() => import('react-qr-reader'), {
 
 const ScanCollector = () => {
   const router = useRouter()
-  const [qrString, setQRString] = useState('')
+  // const [qrString, setQRString] = useState('')
   const [hasScanned, setHasScanned] = useState(false)
   const handleScan = (qrString) => {
     if (qrString && qrString.length > 0) {
       setHasScanned(true)
-      setQRString(qrString)
+      // setQRString(qrString)
       router.push({
         pathname: '/collector/history/[id]',
         query: { id: qrString }
@@ -40,11 +40,11 @@ const ScanCollector = () => {
           <div>
             {
               hasScanned
-                ? <p>{qrString}</p>
+                ? <p>{'Getting collector\'s history...'}</p>
                 : <QrReader
                     facingMode='environment'
                     onError={(err) => handleError(err)}
-                    onScan={(obj) => handleScan(obj)}
+                    onScan={(str) => handleScan(str)}
                     style={{ width: '80%', margin: '0 auto' }}
                   />
             }
