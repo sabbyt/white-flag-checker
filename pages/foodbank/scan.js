@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
@@ -9,12 +10,17 @@ const QrReader = dynamic(() => import('react-qr-reader'), {
 })
 
 const ScanCollector = () => {
+  const router = useRouter()
   const [qrString, setQRString] = useState('')
   const [hasScanned, setHasScanned] = useState(false)
   const handleScan = (qrString) => {
     if (qrString && qrString.length > 0) {
       setHasScanned(true)
       setQRString(qrString)
+      router.push({
+        pathname: '/collector/history/[id]',
+        query: { id: qrString }
+      })
     }
   }
 
