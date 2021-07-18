@@ -39,6 +39,7 @@ const ScanCollector = () => {
               hasScanned
                 ? <p>{qrString}</p>
                 : <QrReader
+                    facingMode='rear'
                     delay={100000}
                     onError={(err) => handleError(err)}
                     onScan={(obj) => handleScan(obj)}
