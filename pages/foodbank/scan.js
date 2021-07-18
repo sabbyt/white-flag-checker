@@ -16,7 +16,6 @@ const ScanCollector = () => {
       setHasScanned(true)
       setQRString(qrString)
     }
-    console.log('QRSTRING', qrString)
   }
 
   const handleError = (err) => console.log(err)

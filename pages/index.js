@@ -29,7 +29,6 @@ function Home ({ data }) {
     )
 
     const result = await res.json()
-    console.log('RESULT', result)
     setUserDetails(result)
   }
 
