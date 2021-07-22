@@ -1,7 +1,17 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-import Layout, { siteTitle } from '../../components/layoutFoodbank'
+import Layout, { siteTitle } from '../../components/layout'
+import ContentCard from '../../components/contentcard'
+
+const MenuButtons = (props) => {
+  return <Link href={props.href}>
+    <div className='buttons' class="bg-white flex flex-col border-2 border-gray-200 rounded shadow p-6 hover:border-purple-300">
+      <img className='buttonsImage' src={props.src} />
+      <h2 className='text-sm text-center text-gray-600 mt-4 '>{props.text}</h2>
+    </div>
+  </Link>
+}
 
 const FoodbankHome = () => {
   return (
@@ -9,24 +19,13 @@ const FoodbankHome = () => {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <div className='bg-white p-8 rounded-br-md rounded-bl-md mt-10'>
+      <ContentCard>
         <h2 className='text-gray-700 font-semibold'>Foodbank Portal</h2>
-        <div className='flex flex-col items-stretch mt-8 '>
-          <Link href='/foodbank/scan'>
-            <div className='buttons'>
-              <img className='buttonsImage' src='/images/qrcustomer.png' />
-              <h2 className='text-sm text-center text-gray-600 mt-4 '>Scan Collector</h2>
-            </div>
-          </Link>
-          <br />
-          <Link href='/foodbank/manual'>
-            <div className='buttons'>
-              <img className='buttonsImage' src='/images/category.png' />
-              <h2 className='text-sm text-center text-gray-600 mt-4 '>Manual Entry</h2>
-            </div>
-          </Link>
+        <div className='flex flex-col items-stretch mt-8 gap-6'>
+          <MenuButtons href="/foodbank/scan" src="/images/qrcustomer.png" text="Scan Collector" />
+          <MenuButtons href="/foodbank/manual" src="/images/category.png" text="Manual Entry" />
         </div>
-      </div>
+      </ContentCard>
     </Layout>
   )
 }
