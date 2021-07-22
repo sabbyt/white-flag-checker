@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { useRouter } from 'next/router'
-import Head from 'next/head'
 import dynamic from 'next/dynamic'
-
-import Layout from '../../components/layout'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import React, { useState } from 'react'
 import ContentCard from '../../components/contentcard'
+import Layout from '../../components/layout'
+
 
 const QrReader = dynamic(() => import('react-qr-reader'), {
   ssr: false
