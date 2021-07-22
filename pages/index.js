@@ -41,9 +41,9 @@ function Home ({ data }) {
 
         <div className='flex flex-col items-stretch  mt-8 justify-items-center'>
           <h2>NRIC: {userDetails.userID}</h2>
-          <br/>
+          <br />
           <QRCode value={userDetails._id} />
-          <br/>
+          <br />
           <p>Kindly show the QR code to the foodbank</p>
         </div>
 
@@ -59,9 +59,9 @@ function Home ({ data }) {
         <div className='flex flex-col items-stretch mt-8 justify-items-center'>
           <form onSubmit={loginUser}>
             <label htmlFor='idNumber'>Key in your NRIC</label>
-            <br/>
-            <input id='idNumber' name='idNumber' type='text' autoComplete='name' placeholder='NRIC' className="inputField" required />
-            <br/>
+            <br />
+            <input id='idNumber' name='idNumber' type='text' autoComplete='name' placeholder='NRIC' className='inputField' required />
+            <br />
             <button type='submit' className='approveButton'>
               Login
             </button>

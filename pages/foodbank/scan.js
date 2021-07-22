@@ -16,7 +16,6 @@ const ScanCollector = () => {
   const handleScan = (qrString) => {
     if (qrString && qrString.length > 0) {
       setHasScanned(true)
-      console.log('qrString is ', qrString)
       // setQRString(qrString)
       router.push({
         pathname: '/collector/history/[id]',
