@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import { reverse } from 'lodash'
 
-import Layout from '../../../components/layoutFoodbank'
-import { url } from '../../../config';
+import Layout from '../../components/layoutFoodbank'
+import { url } from '../../config';
 
 export async function getServerSideProps(context) {
   if (!context.query || !context.query.id.length === 0) return { error: true } 
@@ -40,7 +40,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-const HistoryPage = (props) => {
+const ManualHistoryPage = (props) => {
   // Getting browser location for future reference
   const [loading, setLoading] = useState(false)
   const [coords, setCoords] = useState({})
@@ -99,8 +99,8 @@ const HistoryPage = (props) => {
           </div>
 
           <div>
-            <Link href='/foodbank/scan'>
-              <a>Scan again</a>
+            <Link href='/foodbank/manual'>
+              <a>Check another user</a>
             </Link>
           </div>    
         </div>
@@ -112,9 +112,9 @@ const HistoryPage = (props) => {
   return (
   <Layout>
     <Head>
-      <title>Collection History</title>
+      <title>Manual Entry: Collection History</title>
     </Head>
-    <div className='bg-white p-8 rounded-br-md rounded-bl-md mt-10 flex flex-col items-strech'>
+    <div className='bg-white p-8 rounded-br-md rounded-bl-md mt-10 flex flex-col items-strech justify-items-center'>
       <div className='flex-1'>
         <h2 className='text-gray-700 font-semibold'>Collection History</h2>
       </div>
@@ -123,19 +123,24 @@ const HistoryPage = (props) => {
         <ul>
         {
           props && props.history
-          ?
-          reverse(props.history.map((post) => <li>{post.time}</li>))
-          : null
+          ? (
+            reverse(props.history.map((post) => <li>{post.time}</li>))
+          )
+          : (
+            <h1>User had not collected any item</h1>
+          )
         }
         </ul>
       </div>
 
-      <button onClick={() => !loading ? postCollection(props.userID) : null} className="approveButton" >
-        <p>{"Approve Collection"}</p>
-      </button>
+        <div className="flex flex-row justify-center">
+          <button onClick={() => !loading ? postCollection(props.userID) : null } className='approveButton' >
+            <p className="text-black">{"Approve"}</p>
+          </button>
+      </div>
 
     </div>
   </Layout>
 )}
 
-export default HistoryPage
+export default ManualHistoryPage

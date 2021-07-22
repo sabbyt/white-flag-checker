@@ -18,6 +18,7 @@ const FoodbankHome = () => {
               <h2 className='text-sm text-center text-gray-600 mt-4 '>Scan Collector</h2>
             </div>
           </Link>
+          <br/>
           <Link href='/foodbank/manual'>
             <div className='buttons'>
               <img className='buttonsImage' src='/images/category.png' />
