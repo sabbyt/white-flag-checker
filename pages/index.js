@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import QRCode from 'react-qr-code'
 
-import Layout from '../components/layoutCollector'
+import Layout from '../components/layout'
 
 function Home ({ data }) {
   const [userDetails, setUserDetails] = useState(null)
@@ -41,11 +41,13 @@ function Home ({ data }) {
     </Layout>
   ) : (
     <Layout>
-      <div className='bg-white p-8 rounded-br-md rounded-bl-md mt-10 flex flex-col items-strech'>
-        <form onSubmit={loginUser}>
-          <label htmlFor='idNumber'>ID Number</label>
-          <input id='idNumber' name='idNumber' type='text' autoComplete='name' required />
-          <button type='submit'>Login</button>
+      <div className='bg-white m-6 shadow p-8 rounded mt-10 flex flex-col items-strech'>
+        <form class="flex gap-2 items-center" onSubmit={loginUser}>
+          <div class="flex gap-2 items-center">
+            <label class="font-bold" htmlFor='idNumber'>ID Number</label>
+            <input class="focus:outline-none focus:ring-2 focus:ring-purple-300 focus:border-transparent font-extralight rounded shadow p-1 border-gray-200 border" id='idNumber' name='idNumber' type='text' autoComplete='name' required />
+          </div>
+          <button class="rounded shadow bg-white border-2 border-purple-300 py-1 px-2 hover:bg-gray-100" type='submit'>Login</button>
         </form>
       </div>
     </Layout>
