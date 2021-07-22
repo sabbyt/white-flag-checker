@@ -1,3 +1,4 @@
+// UNUSED PAGE
 import Head from 'next/head'
 import Link from 'next/link'
 import React, { useEffect, useState } from "react";
@@ -135,7 +136,7 @@ const ManualHistoryPage = (props) => {
 
         <div className="flex flex-row justify-center">
           <button onClick={() => !loading ? postCollection(props.userID) : null } className='approveButton' >
-            <p className="text-black">{"Approve"}</p>
+            <p className="text-black">{"Approve Collection"}</p>
           </button>
       </div>
 

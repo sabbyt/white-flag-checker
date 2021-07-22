@@ -103,6 +103,12 @@ const HistoryPage = (props) => {
               <a>Scan again</a>
             </Link>
           </div>    
+
+          <div>
+            <Link href='/foodbank/manual'>
+              <a>Manual entry</a>
+            </Link>
+          </div>    
         </div>
       </Layout>
     )
@@ -123,9 +129,12 @@ const HistoryPage = (props) => {
         <ul>
         {
           props && props.history
-          ?
-          reverse(props.history.map((post) => <li>{post.time}</li>))
-          : null
+          ? (
+            reverse(props.history.map((post) => <li>{post.time}</li>))
+          )
+          : (
+            <h1>User has not collected any items before</h1>
+          )
         }
         </ul>
       </div>
