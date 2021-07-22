@@ -27,7 +27,7 @@ const ScanCollector = () => {
 
   const handleError = (err) => console.log(err)
 
-  retun(
+  return(
     <Layout>
       <Head>
         <title>Scan</title>
