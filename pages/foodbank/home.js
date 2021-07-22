@@ -5,12 +5,14 @@ import Layout, { siteTitle } from '../../components/layout'
 import ContentCard from '../../components/contentcard'
 
 const MenuButtons = (props) => {
-  return <Link href={props.href}>
-    <div className='buttons' class="bg-white flex flex-col border-2 border-gray-200 rounded shadow p-6 hover:border-purple-300">
+  return (
+  <Link href={props.href} passHref>
+    <div className='buttons'>
       <img className='buttonsImage' src={props.src} />
       <h2 className='text-sm text-center text-gray-600 mt-4 '>{props.text}</h2>
     </div>
   </Link>
+  )
 }
 
 const FoodbankHome = () => {
