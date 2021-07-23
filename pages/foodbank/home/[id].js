@@ -35,8 +35,7 @@ export async function getServerSideProps (context) {
 
   return {
     props: {
-      ...data,
-      merchantID: context.query.id
+      ...data
     }
   }
 }
@@ -67,10 +66,14 @@ const FoodbankHome = props => {
     )
   }
 
-  let cookieMerchant = Cookies.get('merchantID')
+  let cookieMerchantID = Cookies.get('merchantID')
+  let cookieMerchantName = Cookies.get('merchantName')
 
-  if (!cookieMerchant) {
-    Cookies.set('merchantID', props.merchantID)
+  if (!cookieMerchantID || !cookieMerchantName) {
+    cookieMerchantName = props.merchant.name
+    cookieMerchantID = props.merchant.id
+    Cookies.set('merchantID', cookieMerchantID)
+    Cookies.set('merchantName', cookieMerchantName)
   }
 
   return (
@@ -80,6 +83,7 @@ const FoodbankHome = props => {
       </Head>
       <ContentCard>
         <h2 className='text-gray-700 font-semibold'>Foodbank Portal</h2>
+        <h2 className='text-gray-700 font-semibold'>{`Welcome, ${cookieMerchantName}!`}</h2>
         <div className='flex flex-col items-stretch mt-8 gap-6'>
           <MenuButtons href='/foodbank/scan' src='/images/qrcustomer.png' text='Scan Collector' />
           <MenuButtons href='/foodbank/manual' src='/images/edit-text.png' text='Manual Entry' />

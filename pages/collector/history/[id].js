@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import { reverse } from 'lodash'
 import Cookies from 'js-cookie'
+import moment from 'moment'
 
 import Layout from '../../../components/layout'
 import { url } from '../../../config';
@@ -59,7 +60,8 @@ const HistoryPage = (props) => {
     event.preventDefault()
     setLoading(true)
 
-    let cookieMerchant = Cookies.get('merchantID')
+    let cookieMerchantID = Cookies.get('merchantID')
+    let cookieMerchantName = decodeURI(Cookies.get('merchantName'))
 
     // Validated
     const res = await fetch(
@@ -71,7 +73,8 @@ const HistoryPage = (props) => {
             lat: coords.lat || '',
             lng: coords.lng || ''
           },
-          merchantID: cookieMerchant
+          merchantID: cookieMerchantID,
+          merchantName: cookieMerchantName
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -143,7 +146,7 @@ const HistoryPage = (props) => {
       {
         props && props.history && props.history.length !== 0
         ? (
-          reverse(props.history.map((post) => <li>{post.time}</li>))
+          reverse(props.history.map((post, key) => <li key={key}>{`+ ${moment(post.time).format('dddd, MMMM Do YYYY, h:mm A')} ${post.merchantName ? `collected from ${post.merchantName}` : ''}`}</li>))
         )
         : (
           <h1>User has not collected any items before</h1>

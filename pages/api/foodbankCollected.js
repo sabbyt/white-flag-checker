@@ -11,12 +11,14 @@ handler.post(async (req, res) => {
   const userID = req.body.userID
   const coords = req.body.coords
   const merchantID = req.body.merchantID
+  const merchantName = req.body.merchantName
   const currentTimestamp = moment().format('YYYY-MM-DD HH:mm')
   const newCollectionObj = {
     lat: coords.lat,
     lng: coords.lng,
     time: currentTimestamp,
-    merchantID
+    merchantID,
+    merchantName
   }
 
   const result = await req.db.collection('users').update(

@@ -10,7 +10,7 @@ handler.post(async (req, res) => {
   const merchant = await req.db.collection('merchant').findOne({ id: foodbankID })
   // ID created
   if (merchant) {
-    return res.json({ error: false })
+    return res.json({ error: false, merchant })
   } else {
     return res.json({ error: true })
   }
