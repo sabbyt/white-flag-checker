@@ -76,6 +76,12 @@ const FoodbankHome = props => {
     Cookies.set('merchantName', cookieMerchantName)
   }
 
+  // Reset cookies if don't match login
+  if (cookieMerchantID !== props.merchant.id || cookieMerchantName !== props.merchant.name) {
+    Cookies.set('merchantID', props.merchant.id)
+    Cookies.set('merchantName', props.merchant.name)
+  }
+
   return (
     <Layout home>
       <Head>
@@ -83,7 +89,7 @@ const FoodbankHome = props => {
       </Head>
       <ContentCard>
         <h2 className='text-gray-700 font-semibold'>Foodbank Portal</h2>
-        <h2 className='text-gray-700 font-semibold'>{`Welcome, ${cookieMerchantName}!`}</h2>
+        <h2 className='text-gray-700 font-semibold'>{`Welcome, ${props.merchant.name}!`}</h2>
         <div className='flex flex-col items-stretch mt-8 gap-6'>
           <MenuButtons href='/foodbank/scan' src='/images/qrcustomer.png' text='Scan Collector' />
           <MenuButtons href='/foodbank/manual' src='/images/edit-text.png' text='Manual Entry' />
