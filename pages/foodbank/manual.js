@@ -72,7 +72,7 @@ const ManualCollector = () => {
 
         <div className='flex flex-col items-stretch  mt-8 justify-items-center'>
           <form onSubmit={checkUser}>
-            <label htmlFor='idNumber'>NRIC / ID Number</label><br />
+            <label htmlFor='idNumber'>ID Number</label><br />
             <input id='idNumber' name='idNumber' type='text' autoComplete='name' className='inputField' placeholder='NRIC / ID Number' required />
             <br />
             <button type='submit' disabled={loading} className='approveButton'>

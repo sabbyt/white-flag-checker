@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import { reverse } from 'lodash'
 
-import Layout from '../../../components/layoutFoodbank'
+import Layout from '../../../components/layout'
 import { url } from '../../../config';
 
 export async function getServerSideProps(context) {
@@ -98,17 +98,18 @@ const HistoryPage = (props) => {
             <h2 className='text-gray-700 font-semibold'>Collection Success!</h2>
           </div>
 
-          <div>
-            <Link href='/foodbank/scan'>
+          <div className='flex flex-col items-stretch mt-8'>
+          <Link className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" href='/foodbank/scan'>
               <a>Scan again</a>
             </Link>
-          </div>    
+        </div>
 
-          <div>
-            <Link href='/foodbank/manual'>
-              <a>Manual entry</a>
+          <div className='flex flex-col items-stretch mt-8'>
+          <Link className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" href='/foodbank/manual'>
+              <a>Enter again</a>
             </Link>
-          </div>    
+        </div>
+   
         </div>
       </Layout>
     )
@@ -146,10 +147,11 @@ const HistoryPage = (props) => {
       }
       </ul>
     </div>
-
-    <button onClick={() => !loading ? postCollection(props.userID) : null} className="approveButton" >
-      <p>{"Approve Collection"}</p>
-    </button>
+        <div className='flex flex-col items-stretch mt-8'>
+          <button onClick={() => !loading ? postCollection(props.userID) : null} className="approveButton" >
+            <p>{"Approve Collection"}</p>
+          </button>
+        </div>
     </div>
     }
 

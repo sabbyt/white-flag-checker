@@ -28,19 +28,18 @@ function Home ({ data }) {
     )
 
     const result = await res.json()
-    console.log('RESULT', result)
     setUserDetails(result)
   }
 
   return userDetails ? (
     <Layout home>
-      <div className='bg-white p-8 rounded-br-md rounded-bl-md mt-10 flex flex-col items-strech'>
+      <div className='bg-white m-6 shadow-md p-8 rounded mt-10 flex flex-col items-strech'>
         <div className='flex-1'>
           <h2 className='text-gray-700 font-semibold'>Profile</h2>
         </div>
 
         <div className='flex flex-col items-stretch  mt-8 justify-items-center'>
-          <h2>NRIC / ID Number: {userDetails.userID}</h2>
+          <h2>ID Number: {userDetails.userID}</h2>
           <br />
           <QRCode value={userDetails._id} />
           <br />
@@ -51,13 +50,19 @@ function Home ({ data }) {
     </Layout>
   ) : (
     <Layout home>
-      <div className='bg-white m-6 shadow p-8 rounded mt-10 flex flex-col items-strech'>
-        <form className='flex gap-2 items-center' onSubmit={loginUser}>
-          <div className='flex gap-2 items-center'>
-            <label className='font-bold' htmlFor='idNumber'>ID Number</label>
-            <input className='inputField' id='idNumber' name='idNumber' type='text' autoComplete='name' required />
+      <div className='bg-white m-6 shadow-md p-8 rounded mt-10 flex flex-col items-strech'>
+        <form class='bg-white rounded px-8 pt-6 pb-8 mb-4' onSubmit={loginUser}>
+          <div class='mb-4'>
+            <label class='block text-gray-700 text-sm font-bold mb-2' for='username'>
+              User Login
+            </label>
+            <input className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' id='idNumber' name='idNumber' type='text' autoComplete='name' placeholder='NRIC / ID Number' required />
           </div>
-          <button className='rounded shadow bg-white border-2 border-purple-300 py-1 px-2 hover:bg-gray-100' type='submit'>Login</button>
+          <div class='flex items-center justify-between'>
+            <button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' type='submit'>
+              Login
+            </button>
+          </div>
         </form>
       </div>
     </Layout>
