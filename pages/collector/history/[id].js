@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import { reverse } from 'lodash'
+import Cookies from 'js-cookie'
 
 import Layout from '../../../components/layout'
 import { url } from '../../../config';
@@ -57,6 +58,9 @@ const HistoryPage = (props) => {
   const postCollection = async (userID) => {
     event.preventDefault()
     setLoading(true)
+
+    let cookieMerchant = Cookies.get('merchantID')
+
     // Validated
     const res = await fetch(
       '/api/foodbankCollected',
@@ -66,8 +70,8 @@ const HistoryPage = (props) => {
           coords: {
             lat: coords.lat || '',
             lng: coords.lng || ''
-          }
-          // TODO: POST MERCHANT ID
+          },
+          merchantID: cookieMerchant
         }),
         headers: {
           'Content-Type': 'application/json'

@@ -1,11 +1,14 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Cookies from 'js-cookie'
 
 import styles from './layout.module.css'
 
 export const siteTitle = 'The White Flag Project'
 
 export default function LayoutCollector ({ children, home }) {
+  const cookieMerchant = Cookies.get('merchantID')
+
   return (
     <div className={styles.container}>
       <Head>
@@ -20,7 +23,7 @@ export default function LayoutCollector ({ children, home }) {
       {
         !home && (
           <div className={styles.backToHome}>
-            <Link href='/foodbank/home'>
+            <Link href={`/foodbank/home/${cookieMerchant}`}>
               <a>← Back to home</a>
             </Link>
           </div>
