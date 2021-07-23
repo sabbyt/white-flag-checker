@@ -114,7 +114,6 @@ const HistoryPage = (props) => {
     )
   }
 
-
   return (
   <Layout>
     <Head>
@@ -123,25 +122,36 @@ const HistoryPage = (props) => {
     <div className='bg-white p-8 rounded-br-md rounded-bl-md mt-10 flex flex-col items-strech'>
       <div className='flex-1'>
         <h2 className='text-gray-700 font-semibold'>Collection History</h2>
-      </div>
-
-      <div className='flex flex-col items-stretch mt-8 border-4'>
-        <ul>
         {
-          props && props.history
-          ? (
-            reverse(props.history.map((post) => <li>{post.time}</li>))
-          )
-          : (
-            <h1>User has not collected any items before</h1>
-          )
+          loading
+          ? <h2 className='text-gray-700 font-semibold'>Approving collection...</h2>
+      : null
         }
-        </ul>
       </div>
 
-      <button onClick={() => !loading ? postCollection(props.userID) : null} className="approveButton" >
-        <p>{"Approve Collection"}</p>
-      </button>
+    {
+      loading
+      ? null
+      :       <div>
+        <div className='flex flex-col items-stretch mt-8 border-4'>
+      <ul>
+      {
+        props && props.history && props.history.length !== 0
+        ? (
+          reverse(props.history.map((post) => <li>{post.time}</li>))
+        )
+        : (
+          <h1>User has not collected any items before</h1>
+        )
+      }
+      </ul>
+    </div>
+
+    <button onClick={() => !loading ? postCollection(props.userID) : null} className="approveButton" >
+      <p>{"Approve Collection"}</p>
+    </button>
+    </div>
+    }
 
     </div>
   </Layout>

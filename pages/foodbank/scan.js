@@ -5,7 +5,6 @@ import React, { useState } from 'react'
 import ContentCard from '../../components/contentcard'
 import Layout from '../../components/layout'
 
-
 const QrReader = dynamic(() => import('react-qr-reader'), {
   ssr: false
 })
@@ -27,7 +26,7 @@ const ScanCollector = () => {
 
   const handleError = (err) => console.log(err)
 
-  return(
+  return (
     <Layout>
       <Head>
         <title>Scan</title>
@@ -43,11 +42,11 @@ const ScanCollector = () => {
               hasScanned
                 ? <p>{'Getting collector\'s history...'}</p>
                 : <QrReader
-                  facingMode='environment'
-                  onError={(err) => handleError(err)}
-                  onScan={(str) => handleScan(str)}
-                  style={{ width: '80%', margin: '0 auto' }}
-                />
+                    facingMode='environment'
+                    onError={(err) => handleError(err)}
+                    onScan={(str) => handleScan(str)}
+                    style={{ width: '80%', margin: '0 auto' }}
+                  />
             }
           </div>
         </div>

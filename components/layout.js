@@ -5,7 +5,7 @@ import styles from './layout.module.css'
 
 export const siteTitle = 'The White Flag Project'
 
-export default function LayoutCollector({ children, home }) {
+export default function LayoutCollector ({ children, home }) {
   return (
     <div className={styles.container}>
       <Head>

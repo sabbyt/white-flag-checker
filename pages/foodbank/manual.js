@@ -6,7 +6,6 @@ import Layout from '../../components/layout'
 import ContentCard from '../../components/contentcard'
 
 const ManualCollector = () => {
-
   const router = useRouter()
   const [loading, setLoading] = useState(false)
 
@@ -34,8 +33,6 @@ const ManualCollector = () => {
 
     const result = await res.json()
 
-    setLoading(false)
-
     router.push({
       pathname: '/collector/history/[id]',
       query: { id: result._id }
@@ -45,6 +42,22 @@ const ManualCollector = () => {
     //   pathname: '/foodbank/[id]',
     //   query: { id: result._id }
     // })
+  }
+
+  if (loading) {
+    return (
+      <Layout>
+        <Head>
+          <title>Manual Entry</title>
+        </Head>
+        <ContentCard>
+          <div className='flex-1'>
+            <h2 className='text-gray-700 font-semibold'>Manual Entry</h2>
+            <h2 className='text-gray-700 font-semibold'>Getting user history...</h2>
+          </div>
+        </ContentCard>
+      </Layout>
+    )
   }
 
   return (
@@ -59,10 +72,10 @@ const ManualCollector = () => {
 
         <div className='flex flex-col items-stretch  mt-8 justify-items-center'>
           <form onSubmit={checkUser}>
-            <label htmlFor='idNumber'>ID Number</label><br />
-            <input id='idNumber' name='idNumber' type='text' autoComplete='name' className='inputField' placeholder='NRIC' required />
+            <label htmlFor='idNumber'>NRIC / ID Number</label><br />
+            <input id='idNumber' name='idNumber' type='text' autoComplete='name' className='inputField' placeholder='NRIC / ID Number' required />
             <br />
-            <button type='submit' className='approveButton'>
+            <button type='submit' disabled={loading} className='approveButton'>
               <p className='text-black'>Check User</p>
             </button>
           </form>

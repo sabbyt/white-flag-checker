@@ -3,7 +3,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      'sans': ['Signika', 'sans-serif']
+      sans: ['Signika', 'sans-serif']
     },
     extend: {}
   },
