@@ -6,6 +6,7 @@ import Layout from '../components/layout'
 
 function Home ({ data }) {
   const [userDetails, setUserDetails] = useState(null)
+  const [agree, setAgree] = useState(false)
 
   const cookieUser = {
     userID: null,
@@ -74,11 +75,19 @@ function Home ({ data }) {
             </label>
             <input className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' id='idNumber' name='idNumber' type='text' autoComplete='name' placeholder='NRIC / ID Number' required />
           </div>
-          <div class='flex items-center justify-between'>
-            <button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' type='submit'>
-              Login
-            </button>
-          </div>
+          <input id='checkbox' type='checkbox' checked={agree} onChange={_ => setAgree(!agree)} />
+          <label class='container'>I consent and agree for the White Flag Project to collect my data for foodbank collection history purposes.
+            <span class='checkmark' />
+          </label>
+          {
+            agree
+              ? <div class='flex items-center justify-between'>
+                <button disabled={!agree} class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' type='submit'>
+                  Login
+                </button>
+              </div>
+              : null
+          }
         </form>
       </div>
     </Layout>
