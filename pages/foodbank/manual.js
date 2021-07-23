@@ -16,7 +16,7 @@ const ManualCollector = () => {
     if (event.target.idNumber.length === 0) return alert('Please enter an ID number')
 
     setLoading(true)
-    const userID = event.target.idNumber.value
+    const userID = event.target.idNumber.value.replace(/[^0-9a-z]/gi, '').toUpperCase()
 
     const res = await fetch(
       '/api/collectorLogin',
