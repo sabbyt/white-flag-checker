@@ -1,9 +1,23 @@
 import React, { useState } from 'react'
 import QRCode from 'react-qr-code'
+import Cookies from 'js-cookie'
+
 import Layout from '../components/layout'
 
 function Home ({ data }) {
   const [userDetails, setUserDetails] = useState(null)
+
+  const cookieUser = {
+    userID: null,
+    _id: null
+  }
+
+  cookieUser.userID = Cookies.get('userID')
+  cookieUser._id = Cookies.get('qrString')
+
+  if (!userDetails && cookieUser.userID && cookieUser._id) {
+    setUserDetails(cookieUser)
+  }
 
   const loginUser = async event => {
     event.preventDefault()
@@ -28,6 +42,8 @@ function Home ({ data }) {
     )
 
     const result = await res.json()
+    Cookies.set('userID', result.userID)
+    Cookies.set('qrString', result._id)
     setUserDetails(result)
   }
 
