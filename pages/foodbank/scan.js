@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import { useRouter } from 'next/router'
-import Head from 'next/head'
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import React, { useState } from 'react'
+import ContentCard from '../../components/contentcard'
+import Layout from '../../components/layout'
 
-import Layout from '../../components/layoutFoodbank'
 
 const QrReader = dynamic(() => import('react-qr-reader'), {
   ssr: false
@@ -26,12 +27,12 @@ const ScanCollector = () => {
 
   const handleError = (err) => console.log(err)
 
-  return (
+  return(
     <Layout>
       <Head>
         <title>Scan</title>
       </Head>
-      <div className='bg-white p-8 rounded-br-md rounded-bl-md mt-10 flex flex-col items-strech'>
+      <ContentCard>
         <div className='flex-1'>
           <h2 className='text-gray-700 font-semibold'>Scan Collector</h2>
         </div>
@@ -42,15 +43,15 @@ const ScanCollector = () => {
               hasScanned
                 ? <p>{'Getting collector\'s history...'}</p>
                 : <QrReader
-                    facingMode='environment'
-                    onError={(err) => handleError(err)}
-                    onScan={(str) => handleScan(str)}
-                    style={{ width: '80%', margin: '0 auto' }}
-                  />
+                  facingMode='environment'
+                  onError={(err) => handleError(err)}
+                  onScan={(str) => handleScan(str)}
+                  style={{ width: '80%', margin: '0 auto' }}
+                />
             }
           </div>
         </div>
-      </div>
+      </ContentCard>
     </Layout>
   )
 }
